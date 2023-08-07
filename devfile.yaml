@@ -34,8 +34,6 @@ components:
       - name: http-3001
         targetPort: 3001
         path: /
-  - type: chePlugin
-    references: vscode:ms-azuretools.vscode-docker
 commands:
   - id: build-image
     apply:
