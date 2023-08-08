@@ -35,9 +35,6 @@ components:
         targetPort: 3001
         path: /
 commands:
-  - id: build-image
-    apply:
-      component: image-build
   - id: deployk8s
     apply:
       component: kubernetes-deploy
