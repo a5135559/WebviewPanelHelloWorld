@@ -19,14 +19,14 @@ class HelloWorldView{
 
 	static createOrShow(){
 		if(!HelloWorldView.currentPanel){
-			HelloWorldView.currentPanel = vscode.window.createWebviewPanel(
+			const panel = vscode.window.createWebviewPanel(
 				'helloWorldView',
 				'Hello World View',
 				vscode.ViewColumn.One,{
 					enableScripts: true
 				}	
 			);
-			HelloWorldView.currentPanel.webview.html = `
+			panel.webview.html = `
                 <!DOCTYPE html>
                 <html>
                 <body>
@@ -35,6 +35,10 @@ class HelloWorldView{
                 </html>
             `;
 
+			panel.onDidDispose(() => {
+				HelloWorldView.currentPanel = undefined;
+			})
+			HelloWorldView.currentPanel = panel;
 		}else{
 			HelloWorldView.currentPanel.reveal();
 		}
